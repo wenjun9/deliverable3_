@@ -1,9 +1,15 @@
 //User story:
-// As a user of Amazon, I want to manage my cart so that I can manage what I want to buy finally
+// As a shopper, I want to manage my cart so that I can manage what I want to buy finally
 
 //Scenarios:
-//Given a product's page, when I click on "Add to Cart", the item is visible in my Cart
-//Given the Cart , when I add one more of the same product, the cart is updated with the item's new quantity
+
+////Given the amazon homepage, when I click on the cart without adding any items, then 
+//"Your shopping cart is empty" is displayed
+
+//Given a product's page, when I click on "Add to Cart", then the item is visible in my Cart
+
+//Given the Cart , when I add one more of the same product, 
+//then the cart is updated with the item's new quantity
 
 package deliverable3;
 
@@ -31,20 +37,22 @@ public class CartTest {
 		driver.findElement(By.cssSelector("span.nav-cart-icon.nav-sprite")).click();
 		
 		//assertion
+		//unable to locate element "h1" without getPageSource 
 		System.out.println(driver.getPageSource());
 		assertEquals("Your Shopping Cart is empty.", driver.findElement(By.cssSelector("h1")).getText());
 		driver.quit();
 
 	}
 	
-	//Given a products page on Amazon, when I click "Add to Cart", then the item is visible in the Cart.
+	//Given a products page on Amazon, when I click "Add to Cart", 
+	//then the item is visible in the Cart.
 	@Test
 	public void testAddToCart() {
 		
 		//Click on search box and type the product name
 		driver.findElement(By.id("twotabsearchtextbox")).sendKeys("tale of two cities");
 		
-		//Click search icon on the right of text box
+		//Click search icon 
 		driver.findElement(By.cssSelector("input.nav-input")).click();
 		
 		//Click on first result
@@ -63,17 +71,17 @@ public class CartTest {
 		//assertion
 		WebElement element = driver.findElement(By.id("activeCartViewForm"));
 		assertTrue(element.getText().contains("A Tale of Two Cities"));
-		//assertEquals("A Tale of Two Cities (Dover Thrift Editions)", driver.findElement(By.xpath("//form[@id='activeCartViewForm']/div[2]/div/div[4]/div[2]/div/div/div/div[2]/ul/li/span/a/span")).getText());
 		driver.quit();
 	}
 	
 		
-	//Given the Cart , when I add one more of the same product, the cart is updated with the item's new quantity
+	//Given the Cart , when I add one more of the same product,
+	//the cart is updated with the item's new quantity
 	@Test
 	public void testItemQuantity(){
 
 		
-		//Click on search bar and type the product name
+		//Click on search box and type the product name
 		driver.findElement(By.id("twotabsearchtextbox")).sendKeys("tale of two cities");
 		
 		//click on the search icon
@@ -89,7 +97,7 @@ public class CartTest {
 		//click on add to cart button
 		driver.findElement(By.id("add-to-cart-button")).click();
 		
-		//Click on search bar and type the product name
+		//Click on search box and type the product name
 		driver.findElement(By.id("twotabsearchtextbox")).sendKeys("tale of two cities");
 		
 		//click on the search icon
@@ -112,6 +120,7 @@ public class CartTest {
 		driver.findElement(By.id("add-to-cart-button")).click();
 		
 		//click on cart button
+		//unable to locate element "span.nav-cart-icon.nav-sprite" without getPageSource
 		System.out.println(driver.getPageSource());
 		driver.findElement(By.cssSelector("span.nav-cart-icon.nav-sprite")).click();
 		
@@ -120,9 +129,7 @@ public class CartTest {
 		assertTrue(element.getText().contains("updated to 2"));
 			driver.quit();
 				
-		}
-		
-		
+		}	
 		
 }
 
