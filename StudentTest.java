@@ -144,6 +144,7 @@ public class StudentTest
 		
 		//assertion
 		//productTitle failing without PageSource
+		
 	    System.out.println(driver.getPageSource());
 		assertEquals("Software Testing (2nd Edition)", driver.findElement(By.id("productTitle")).getText());
 		driver.quit();
